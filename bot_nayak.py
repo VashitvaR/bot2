@@ -26,6 +26,26 @@ with st.sidebar:
     💡 Note: The  Bot is an integral component of Nayak, augmenting the platform's capabilities and enhancing user experience.
     ''')
 st.markdown('<style>div.stNamedPlaceholder>div{margin-top:20px;}</style>', unsafe_allow_html=True)
+data = [
+    ("How is Nayak always looking to improve and enhance its features?", "Nayak is always looking for ways to improve and enhance its features. If you have any suggestions or specific areas you'd like to see improvements, feel free to share them with us!"),
+    ("What is Nayak's approach to addressing societal challenges?", "Nayak integrates artificial intelligence to contribute to its effectiveness in addressing societal challenges. The goal is to provide a platform that is continually evolving and making a positive impact."),
+    ("Does Nayak have specific success stories?", "While Nayak doesn't have specific success stories, its focus is on creating positive outcomes for individuals facing societal challenges. Your feedback and experiences contribute to the ongoing improvement of the platform."),
+    ("What are Nayak's goals in addressing abuse, fraud, and danger?", "Nayak aims to influence policy changes and raise awareness about abuse, fraud, and danger. By connecting victims with authorities, the platform seeks to address conflicts and empower those affected."),
+    ("How does Nayak address challenges or barriers?", "Nayak acknowledges there may be challenges or barriers. If you have faced any difficulties using the platform, we'd like to hear more about your experiences to make necessary improvements."),
+    ("How can individuals contribute to building a supportive community using Nayak?", "If you've found success using Nayak, recommending the platform to others facing similar challenges can help build a supportive community and amplify its impact."),
+    ("How does Nayak encourage collaboration with support systems and authorities?", "Nayak encourages collaboration with existing support systems and authorities to create a comprehensive solution. Together, we can work towards a safer and more supportive environment."),
+    ("What role does Nayak play in supporting individuals, communities, and governments?", "Nayak plays a crucial role in supporting individuals, communities, and governments. By promoting collaboration and providing valuable insights, the platform aims to make a positive impact in addressing societal challenges."),
+    ("How does Nayak aim to foster a sense of community and solidarity?", "Nayak strives to foster a sense of community and solidarity among individuals facing societal challenges. Your participation and engagement contribute to creating a supportive environment."),
+    ("In what way is Nayak open to feedback for continuous improvement?", "Nayak is open to feedback on how it can better address specific challenges and empower victims. Your insights and suggestions play a vital role in the continuous improvement of the platform.")
+]
+
+
+
+questions = [item[0] for item in data]
+answers = [item[1] for item in data]
+# Convert the data to input format for BERT
+question_input_ids = []
+question_attention_masks = []
 tokenizer = BertTokenizer.from_pretrained('deepset/bert-base-cased-squad2')
 model = BertForQuestionAnswering.from_pretrained('deepset/bert-base-cased-squad2')
 
