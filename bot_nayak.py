@@ -82,12 +82,11 @@ def get_model_output(user_input):
 # Streamlit app
 st.title("Nayak QA System")
 
-while True:
     # Take input from the user
-    user_input = st.text_input("Enter your text:")
+user_input = st.text_input("Enter your text:")
 
     # Check if the user has entered any text
-    if user_input:
+if user_input:
         # Get the model output
         prediction = get_model_output(user_input)
 
@@ -98,5 +97,4 @@ while True:
             st.write("Answer: {}".format(answers[prediction - 1]))
 
         # Add a button to restart the interaction
-        if st.button("Restart Interaction"):
-            continue
+       
