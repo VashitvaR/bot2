@@ -1,6 +1,7 @@
 import streamlit as st
+from google.cloud import speech
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import pandas as pd
-
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import pairwise_distances
 
@@ -243,17 +244,34 @@ def chat_tfidf(question):
     return df_nayak['answer'].loc[index_value]
 
 # Streamlit App
+
+
 def main():
     st.title("Nayak Chatbot")
 
-    # User input
+    # User input via text
     user_input_question = st.text_input("Ask Nayak a question:")
+
+    # User input via voice
+    st.subheader("Or use voice input:")
+    audio_recorder = webrtc_streamer(
+        key="audio-recorder",
+        video_transformer_factory=None,  # No video needed, only audio
+        desired_playing_speed=1,
+        device="audio",
+    )
 
     # Method selection
     method = st.radio("Select Chatbot Method:", ['Bag of Words (BOW)', 'TF-IDF'])
 
     # Chatbot response
     if st.button("Get Nayak's Answer"):
+        # If voice input is used, get transcription
+        if audio_recorder:
+            audio_content = audio_recorder.audio_input
+            response = speech_to_text(config, audio_content)
+            user_input_question = response.results[0].alternatives[0].transcript
+
         if method == 'Bag of Words (BOW)':
             response = chat_bow(user_input_question)
         elif method == 'TF-IDF':
