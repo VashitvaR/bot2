@@ -1,8 +1,9 @@
 streamlit
+PyPDF2
 
 
-pypdfium2
-
+pandas
+scikit-learn
 
 
 
