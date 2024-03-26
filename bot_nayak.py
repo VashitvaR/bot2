@@ -1,31 +1,20 @@
 import streamlit as st
 import pdfplumber 
-import pandas as pd
 
-def extract_data(feed):
-    tables_data = []
+def extract_text(feed):
+    text = ""
     with pdfplumber.open(feed) as pdf:
-        pages = pdf.pages
-        for page in pages:
-            tables = page.extract_tables()
-            for table in tables:
-                tables_data.append(table)
-    # Convert list of tables into a DataFrame
-    if tables_data:
-        df = pd.DataFrame()
-        for table_data in tables_data:
-            df = pd.concat([df, pd.DataFrame(table_data)], ignore_index=True)
-        return df
-    else:
-        return None
+        for page in pdf.pages:
+            text += page.extract_text()
+    return text
 
-st.title("PDF Table Extractor")
+st.title("PDF Text Extractor")
 
 uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
 
 if uploaded_file is not None:
-    extracted_df = extract_data(uploaded_file)
-    if extracted_df is not None:
-        st.dataframe(extracted_df)
+    extracted_text = extract_text(uploaded_file)
+    if extracted_text:
+        st.text(extracted_text)
     else:
-        st.write("No tables found in the PDF file.")
+        st.write("No text found in the PDF file.")
