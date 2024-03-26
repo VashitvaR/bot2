@@ -4,7 +4,7 @@ import pandas as pd
 
 def extract_data(feed):
     tables_data = []
-    with pdfplumber.load(feed) as pdf:
+    with pdfplumber.open(feed) as pdf:
         pages = pdf.pages
         for page in pages:
             tables = page.extract_tables()
