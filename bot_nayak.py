@@ -4,6 +4,9 @@ import nltk
 nltk.download('punkt')
 
 from nltk.tokenize import sent_tokenize
+import nltk
+nltk.download('stopwords')
+
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
 import heapq
