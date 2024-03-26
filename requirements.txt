@@ -1,6 +1,6 @@
 streamlit
 PyPDF2
-gensim
+gensim==3.8.3 
 pdfplumber
 pandas
 scikit-learn
