@@ -1,11 +1,11 @@
 streamlit
 PyPDF2
-gensim==3.8.3 
+
 pdfplumber
 pandas
 scikit-learn
 
-nltk
+nltk==3.5
 
 
 
