@@ -4,7 +4,8 @@ from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
 import heapq
-
+nltk.download('punkt')
+nltk.download('stopwords')
 def extract_text(feed):
     text = ""
     with pdfplumber.open(feed) as pdf:
