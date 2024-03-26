@@ -5,5 +5,8 @@ pdfplumber
 pandas
 scikit-learn
 
+nltk
+
+
 
 
